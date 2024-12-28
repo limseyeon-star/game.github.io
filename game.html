@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Game</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #222;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .game-container {
+            width: 90%;
+            max-width: 400px;
+            background: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .screen {
+            display: none;
+            padding: 20px;
+        }
+        .screen.active {
+            display: block;
+        }
+        .question {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .input-container {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+        }
+        .button {
+            background: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .button:disabled {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="screen active" id="screen1">
+            <div class="question">공주야 어서와! 생일선물을 받고싶다면 문제를 풀도록 해~^^ 연습문제: 빨강 + 파랑 =?</div>
+            <div class="input-container">
+                <input type="text" id="answer1" placeholder="Your answer here">
+            </div>
+            <button class="button" id="btn1" disabled>Next</button>
+        </div>
+
+        <div class="screen" id="screen2">
+            <div class="question">강철나무꾼이 잃어버린 것은? 유얼마이 00브뤠이커어어어어어~!!!</div>
+            <div class="input-container">
+                <input type="text" id="answer2" placeholder="Your answer here">
+            </div>
+            <button class="button" id="btn2" disabled>Next</button>
+        </div>
+
+        <div class="screen" id="screen3">
+            <audio id="sound3" src="https://example.com/fanfare.mp3"></audio>
+            <div class="question">추가 퀴즈문제! 동앗줄이 쇠가 되면? 뭔갈 닮은 것 같기도하다! </div>
+            <div class="input-container">
+                <input type="text" id="answer3" placeholder="Your answer here">
+            </div>
+            <button class="button" id="btn3" disabled>Next</button>
+        </div>
+
+        <div class="screen" id="screen4">
+            <div class="question">고흐는 000없이는 성공하기 힘들었다.</div>
+            <div class="input-container">
+                <input type="text" id="answer4" placeholder="Your answer here">
+            </div>
+            <button class="button" id="btn4" disabled>Next</button>
+        </div>
+
+        <div class="screen" id="screen5">
+            <div class="question">사탕+친절=?</div>
+            <div class="input-container">
+                <input type="text" id="answer5" placeholder="Your answer here">
+            </div>
+            <button class="button" id="btn5" disabled>Next</button>
+        </div>
+
+        <div class="screen" id="screen6">
+            <div class="question">단어 중 숨겨진 뜻을 찾으시오. [자두바나나라임점프클릭라라랜드바비인형] = [6.3.10.16.12]</div>
+            <div class="hint">Hint: 아악 숫자가 뒤죽박죽이라 불편한걸~?</div>
+            <div class="input-container">
+                <input type="text" id="answer6" placeholder="Your answer here">
+            </div>
+            <button class="button" id="btn6" disabled>Next</button>
+        </div>
+
+        <div class="screen" id="screen7">
+            <div class="question">금혜공주는 예전에 세연공주에게 선물로 00000을 줬다. 하지만 금혜공주는 00000 때문에 다리에 빵꾸가 났다. 00000은 무엇인가?</div>
+            <div class="input-container">
+                <input type="text" id="answer7" placeholder="Your answer here">
+            </div>
+            <button class="button" id="btn7" disabled>Next</button>
+        </div>
+
+        <div class="screen" id="screen8">
+            <div class="question">사랑이 없으면 절대 채울 수 없는 것이 있다. 두 글자인 이것은 무엇인가?</div>
+            <div class="input-container">
+                <input type="text" id="answer8" placeholder="Your answer here">
+            </div>
+            <button class="button" id="btn8" disabled>Next</button>
+        </div>
+
+        <div class="screen" id="screen9">
+            <div class="question">직접 만든 것을 영어로 뭐라고 하는가?</div>
+            <div class="input-container">
+                <input type="text" id="answer9" placeholder="Your answer here">
+            </div>
+            <button class="button" id="btn9" disabled>Next</button>
+        </div>
+
+        <div class="screen" id="screen10">
+            <div class="question">지금 당신의 세연공주가 무언가를 하고 있다! 무엇을 해줘야할까?</div>
+            <div class="input-container">
+                <input type="text" id="answer10" placeholder="Your answer here">
+            </div>
+            <button class="button" id="btn10" disabled>Finish</button>
+        </div>
+
+        <div class="screen" id="end">
+            <audio id="endSound" src="https://example.com/celebration.mp3"></audio>
+            <div class="question">🎉 금혜는 생일선물 받기를 성공했다! 🎉</div>
+            <img src="https://example.com/happy-birthday.jpg" alt="Happy Birthday" style="width: 100%; border-radius: 10px;">
+        </div>
+    </div>
+
+    <script>
+        // Game Logic
+        const answers = ["초록", "심장", "체인", "팔레트", "달콤다정", "바라클라바", "모루꽃다발", "편지", "핸드메이드", "뽀뽀"];
+        const screens = document.querySelectorAll('.screen');
+        const buttons = document.querySelectorAll('.button');
+        const inputs = document.querySelectorAll('input');
+        const endSound = document.getElementById('endSound');
+        const sound3 = document.getElementById('sound3');
+
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', () => {
+                buttons[index].disabled = input.value.trim() !== answers[index];
+            });
+        });
+
+        buttons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                if (index === 2) sound3.play();
+                if (index < screens.length - 1) {
+                    screens[index].classList.remove('active');
+                    screens[index + 1].classList.add('active');
+                } else if (index === screens.length - 2) {
+                    screens[index].classList.remove('active');
+                    screens[index + 1].classList.add('active');
+                    endSound.play();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
